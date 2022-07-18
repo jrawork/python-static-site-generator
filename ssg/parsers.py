@@ -4,7 +4,7 @@ import shutil
 
 
 class Parser:
-    extensions = List[str]
+    extensions: List[str] = []
 
     def valid_exension(self, extension):
         if extension in self.extensions:
@@ -12,7 +12,7 @@ class Parser:
         else:
             return False
 
-    def parse(self, path:Path, source:Path, dest:Path):
+    def parse(self, path: Path, source: Path, dest: Path):
         raise NotImplementedError()
 
     def read(self, path):
