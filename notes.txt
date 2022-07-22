@@ -1,0 +1,6 @@
+Run the build method on a Site object
+Iterate through the source directory to identify subdirectories and files
+    - If it is directory, copy it's structure over to the new destination
+    - If it is a file, checks it extension to confirm validity
+        - If valid, run the appropriate parser function to convert to a valid HTML file
+        - If it is a resource such as an image, it is simply copied over
