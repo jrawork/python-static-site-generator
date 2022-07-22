@@ -1,6 +1,10 @@
 from typing import List
 from pathlib import Path
 import shutil
+import sys
+from docutils.core import publish_parts
+from markdown import markdown
+from ssg.content import Content
 
 
 class Parser:
@@ -24,8 +28,19 @@ class Parser:
     def copy(self, path, source, dest):
         shutil.copy2(path, dest / path.relative_to(source))
 
+
 class ResourceParser(Parser):
     extensions = [".jpg", ".png", ".gif", ".css", ".html"]
 
     def parse(self, path:Path, source:Path, dest:Path):
         self.copy(path, source, dest)
+
+
+class MarkdownParser(Parser):
+    extensions = [".md", ".markdown"]
+    
+    def parse(self, path: Path, source: Path, dest: Path):
+        Content.load(self.read(), path)
+        html = markdown(Content.body)
+        self.write(path, dest, html)
+        sys.stdout.write("\x1b[1;32m{} converted to HTML. Metadata: {}\n").format(path.name, Content)  # This string changes color of string in terminal 
