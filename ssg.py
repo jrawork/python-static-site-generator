@@ -3,11 +3,10 @@ from ssg.site import Site
 import ssg.parsers
 
 def main(source="content", dest="dist"):
-    raise Exception() #intentional error
     config = {
         "source": source,
         "dest": dest,
-        "parsers": [ssg.parsers.ResourceParser(), ssg.parsers.MarkdownParser(), ssg.parsers.ReStructuredTextParser()]
+        "parsers": [ssg.parsers.ResourceParser(), ssg.parsers.MarkdownParser(), ssg.parsers.ReSdtructuredTextParser()]
     }
 
     Site(**config).build()
